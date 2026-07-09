@@ -1,0 +1,49 @@
+<div class="flex flex-col gap-8">
+  <!-- Avatar + greeting -->
+  <div>
+    <div
+      class="grid aspect-square w-full place-items-center overflow-hidden rounded-2xl
+             bg-gradient-to-br from-primary/30 via-base-300 to-secondary/30"
+    >
+      <span class="text-6xl font-black tracking-tight text-base-content/80">
+        {{ data().avatarInitials }}
+      </span>
+    </div>
+    <p class="mt-3 text-base-content/80">{{ data().greeting }}</p>
+  </div>
+
+  <!-- Get in touch -->
+  <div>
+    <h2 class="mb-4 text-2xl font-bold">Get in touch</h2>
+    <div class="grid grid-cols-2 gap-3">
+      <a
+        [href]="'mailto:' + data().email"
+        class="btn btn-outline justify-start gap-2 border-base-content/15 font-normal"
+      >
+        <app-icon name="mail" />
+        <span class="underline-offset-2 hover:underline">Email</span>
+      </a>
+      <a
+        [href]="'tel:' + data().phone"
+        class="btn btn-outline justify-start gap-2 border-base-content/15 font-normal"
+      >
+        <app-icon name="phone" />
+        <span class="underline-offset-2 hover:underline">Phone</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Skill set -->
+  <div>
+    <h2 class="mb-4 border-b border-base-content/10 pb-2 text-2xl font-bold">
+      Skill Set
+    </h2>
+    <div class="flex flex-wrap gap-2">
+      @for (skill of data().skills; track skill) {
+        <span class="badge badge-lg border-base-content/15 bg-base-200/60">
+          {{ skill }}
+        </span>
+      }
+    </div>
+  </div>
+</div>

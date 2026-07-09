@@ -33,14 +33,26 @@ Change the name, bio, links, services, tools and skills there — the layout upd
 
 ```
 src/app/portfolio/
-  portfolio.ts        # page shell: header + two-column layout
-  sidebar.ts          # avatar, "Get in touch", skill set
-  about.ts            # About Me + social/link cards
-  services.ts         # services grid with Notion-like toolbar
-  tools.ts            # tools grid
-  icon.ts             # inline-SVG icon set (no external icon dependency)
-  portfolio.model.ts  # content types
-  portfolio.data.ts   # <-- edit your content here
+  portfolio.model.ts       # content types
+  portfolio.data.ts        # <-- edit your content here
+  portfolio/               # page shell: header + two-column layout
+    portfolio.ts
+    portfolio.html
+  sidebar/                 # avatar, "Get in touch", skill set
+    sidebar.ts
+    sidebar.html
+  about/                   # About Me + social/link cards
+    about.ts
+    about.html
+  services/                # services grid with Notion-like toolbar
+    services.ts
+    services.html
+  tools/                   # tools grid
+    tools.ts
+    tools.html
+  icon/                    # inline-SVG icon set (no external icon dependency)
+    icon.ts
+    icon.html
 ```
 
 ## Theme
