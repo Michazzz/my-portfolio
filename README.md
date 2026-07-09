@@ -28,8 +28,8 @@ npm run build              # production build -> dist/my-portfolio/browser
 
 Page content lives in two **gitignored** JSON files (kept out of the repo), imported at build time:
 
-- `src/app/portfolio/portfolio-data.json` — name, bio, links, email, skills, certifications,
-  education, projects, selected projects.
+- `src/app/portfolio/portfolio-data.json` — name, bio, location, links, email, "what I do",
+  grouped skills, certifications, languages, education, projects, selected projects, highlights.
 - `src/app/portfolio/cv-data.json` — CV / experience timeline.
 
 Because they're imported (compiled into the bundle), each file must exist wherever you build,
@@ -62,9 +62,14 @@ src/app/portfolio/
   portfolio/                  # page shell: header + tabs + two-column layout
     portfolio.ts
     portfolio.html
-  sidebar/                    # avatar, skill set, certifications, education
+  sidebar/                    # avatar, location, certifications, languages, education
     sidebar.ts
     sidebar.html
+  skills/                     # Skills tab: grouped skills with tech logos
+    skills.ts
+    skills.html
+  tech-icon/                  # brand logos for skills (via simple-icons)
+    tech-icon.ts
   about/                      # About Me tab: bio + links + email + CV timeline
     about.ts
     about.html

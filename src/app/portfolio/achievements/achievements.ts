@@ -8,4 +8,5 @@ import { SelectedProject } from '../portfolio.model';
 })
 export class Achievements {
   readonly items = input.required<SelectedProject[]>();
+  readonly highlights = input.required<string[]>();
 }

@@ -47,3 +47,6 @@ Thumbs.db
 # locally, and upload the real files to the build host (e.g. via scp) on deploy.
 /src/app/portfolio/cv-data.json
 /src/app/portfolio/portfolio-data.json
+
+# Personal certificate proofs (served as static assets) — upload via scp on deploy.
+/public/certs/

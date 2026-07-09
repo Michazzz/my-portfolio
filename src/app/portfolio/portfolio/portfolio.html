@@ -33,8 +33,11 @@
           @case ('about') {
             <app-about [data]="data" />
           }
+          @case ('skills') {
+            <app-skills [groups]="data.skillGroups" />
+          }
           @case ('achievements') {
-            <app-achievements [items]="data.selectedProjects" />
+            <app-achievements [items]="data.selectedProjects" [highlights]="data.highlights" />
           }
           @case ('projects') {
             <app-projects [items]="data.projects" />

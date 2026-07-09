@@ -1,0 +1,87 @@
+import { Component, ChangeDetectionStrategy, input, computed } from '@angular/core';
+import {
+  siSharp,
+  siDotnet,
+  siNodedotjs,
+  siPython,
+  siOpenjdk,
+  siAngular,
+  siTypescript,
+  siJavascript,
+  siHtml5,
+  siIonic,
+  siReact,
+  siDocker,
+  siKubernetes,
+  siJenkins,
+  siGit,
+  siGitlab,
+  siPostgresql,
+  siRabbitmq,
+  siOpenapiinitiative,
+  siJira,
+} from 'simple-icons';
+
+interface Glyph {
+  path: string;
+  hex: string;
+}
+
+/** Skill name (lower-cased) -> brand logo. Names without a logo render nothing. */
+const ICONS: Record<string, Glyph> = {
+  'c#': siSharp,
+  '.net core': siDotnet,
+  'asp.net core web api': siDotnet,
+  'node.js': siNodedotjs,
+  python: siPython,
+  java: siOpenjdk,
+  angular: siAngular,
+  typescript: siTypescript,
+  javascript: siJavascript,
+  html5: siHtml5,
+  ionic: siIonic,
+  react: siReact,
+  docker: siDocker,
+  kubernetes: siKubernetes,
+  jenkins: siJenkins,
+  git: siGit,
+  gitlab: siGitlab,
+  postgresql: siPostgresql,
+  rabbitmq: siRabbitmq,
+  openapi: siOpenapiinitiative,
+  jira: siJira,
+};
+
+/** Brand colors that are too dark to read on a dark background fall back to the text color. */
+function isDark(hex: string): boolean {
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b < 60;
+}
+
+@Component({
+  selector: 'app-tech-icon',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  // `contents` keeps this host out of flex layout so iconless skills don't get an empty gap.
+  host: { class: 'contents' },
+  template: `
+    @if (glyph(); as g) {
+      <svg viewBox="0 0 24 24" class="size-3.5 shrink-0" [attr.fill]="fill()" aria-hidden="true">
+        <path [attr.d]="g.path" />
+      </svg>
+    }
+  `,
+})
+export class TechIcon {
+  readonly name = input.required<string>();
+
+  protected readonly glyph = computed<Glyph | undefined>(
+    () => ICONS[this.name().trim().toLowerCase()],
+  );
+
+  protected readonly fill = computed(() => {
+    const g = this.glyph();
+    return g && !isDark(g.hex) ? `#${g.hex}` : 'currentColor';
+  });
+}

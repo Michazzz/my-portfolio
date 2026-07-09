@@ -43,6 +43,18 @@ export interface SelectedProject {
   tech?: string[];
 }
 
+export interface SkillGroup {
+  category: string;
+  /** Skill names; a matching tech logo is shown when one is available. */
+  skills: string[];
+}
+
+export interface Language {
+  name: string;
+  /** e.g. "Native", "B2". */
+  level: string;
+}
+
 export interface Project {
   title: string;
   description: string;
@@ -72,11 +84,18 @@ export interface Portfolio {
   /** Initials shown in the avatar placeholder. */
   avatarInitials: string;
   about: string;
+  /** City / location shown under the greeting. */
+  location: string;
   links: SocialLink[];
   email: EmailParts;
-  skills: string[];
+  /** Short "What I do" bullet points. */
+  whatIDo: string[];
+  skillGroups: SkillGroup[];
   certifications: Certification[];
+  languages: Language[];
   education: EducationEntry[];
   projects: Project[];
   selectedProjects: SelectedProject[];
+  /** Biggest achievements / highlights (Achievements tab). */
+  highlights: string[];
 }

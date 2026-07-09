@@ -10,20 +10,9 @@
       </span>
     </div>
     <p class="mt-3 text-base-content/80">{{ data().greeting }}</p>
-  </div>
-
-  <!-- Skill set -->
-  <div>
-    <h2 class="mb-4 border-b border-base-content/10 pb-2 text-2xl font-bold">
-      Skill Set
-    </h2>
-    <div class="flex flex-wrap gap-2">
-      @for (skill of data().skills; track skill) {
-        <span class="badge badge-lg border-base-content/15 bg-base-200/60">
-          {{ skill }}
-        </span>
-      }
-    </div>
+    @if (data().location) {
+      <p class="mt-1 text-sm text-base-content/50">📍 {{ data().location }}</p>
+    }
   </div>
 
   <!-- Certifications -->
@@ -64,6 +53,21 @@
         <li>
           <p class="text-sm font-medium">{{ edu.degree }}</p>
           <p class="text-xs text-base-content/50">{{ edu.school }} · {{ edu.period }}</p>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <!-- Languages -->
+  <div>
+    <h2 class="mb-4 border-b border-base-content/10 pb-2 text-2xl font-bold">
+      Languages
+    </h2>
+    <ul class="flex flex-col gap-2">
+      @for (lang of data().languages; track lang.name) {
+        <li class="flex items-baseline justify-between gap-2 text-sm">
+          <span class="font-medium">{{ lang.name }}</span>
+          <span class="text-base-content/50">{{ lang.level }}</span>
         </li>
       }
     </ul>

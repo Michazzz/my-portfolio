@@ -4,7 +4,21 @@
       {{ data().about }}
     </p>
 
-    <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    @if (data().whatIDo.length) {
+      <div class="mt-6">
+        <h3 class="mb-3 text-lg font-semibold text-base-content/70">What I do</h3>
+        <ul class="flex flex-col gap-2">
+          @for (item of data().whatIDo; track item) {
+            <li class="flex gap-2.5 text-sm text-base-content/80">
+              <span class="mt-1 text-primary" aria-hidden="true">▸</span>
+              <span class="max-w-2xl">{{ item }}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    }
+
+    <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       @for (link of data().links; track link.url) {
         <a
           [href]="link.url"

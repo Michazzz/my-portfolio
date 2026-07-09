@@ -1,20 +1,32 @@
 {
   "brand": "My portfolio",
   "name": "Your Name",
-  "greeting": "Hi there! I am Your Name - fullstack developer.",
+  "greeting": "Hi there! I am Your Name — Senior Software Engineer.",
   "avatarInitials": "YN",
-  "about": "A short paragraph about who you are and what you do.",
+  "location": "City, Country",
+  "about": "A short paragraph about who you are, your seniority and what you focus on.",
   "links": [
     { "label": "your-github", "url": "https://github.com/your-github", "icon": "github" },
     { "label": "in/your-linkedin", "url": "https://linkedin.com/in/your-linkedin", "icon": "linkedin" }
   ],
   "email": { "user": "your.name", "domain": "example.com" },
-  "skills": [".NET", "Angular", "TypeScript", "Docker", "SQL"],
+  "whatIDo": [
+    "One sentence about a core thing you do.",
+    "Another responsibility or focus area."
+  ],
+  "skillGroups": [
+    { "category": "Backend & API", "skills": ["C#", ".NET Core", "Node.js"] },
+    { "category": "Frontend", "skills": ["Angular", "TypeScript"] },
+    { "category": "Cloud & DevOps", "skills": ["Azure", "Docker", "CI/CD"] }
+  ],
   "certifications": [
-    { "name": "Certification name", "issuer": "Issuer", "year": "2023" }
+    { "name": "Certification name", "issuer": "Issuer" }
+  ],
+  "languages": [
+    { "name": "English", "level": "C1" }
   ],
   "education": [
-    { "school": "University", "degree": "BSc, Computer Science", "period": "2015 – 2019" }
+    { "school": "University", "degree": "B.Eng., Computer Science", "period": "2015 – 2019" }
   ],
   "projects": [
     {
@@ -33,5 +45,9 @@
       "leadership": ["Team leadership", "Architecture ownership", "Mentoring"],
       "tech": [".NET", "Angular"]
     }
+  ],
+  "highlights": [
+    "A concrete, measurable achievement.",
+    "Another notable win or promotion."
   ]
 }

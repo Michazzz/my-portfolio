@@ -1,0 +1,18 @@
+<section>
+  <div class="grid gap-6 sm:grid-cols-2">
+    @for (group of groups(); track group.category) {
+      <div>
+        <p class="mb-2.5 text-xs font-medium uppercase tracking-wide text-base-content/50">
+          {{ group.category }}
+        </p>
+        <div class="flex flex-wrap gap-1.5">
+          @for (skill of group.skills; track skill) {
+            <span class="badge gap-1.5 border-base-content/15 bg-base-200/60 py-2.5">
+              <app-tech-icon [name]="skill" />{{ skill }}
+            </span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>
