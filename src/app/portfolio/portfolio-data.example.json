@@ -1,0 +1,37 @@
+{
+  "brand": "My portfolio",
+  "name": "Your Name",
+  "greeting": "Hi there! I am Your Name - fullstack developer.",
+  "avatarInitials": "YN",
+  "about": "A short paragraph about who you are and what you do.",
+  "links": [
+    { "label": "your-github", "url": "https://github.com/your-github", "icon": "github" },
+    { "label": "in/your-linkedin", "url": "https://linkedin.com/in/your-linkedin", "icon": "linkedin" }
+  ],
+  "email": { "user": "your.name", "domain": "example.com" },
+  "skills": [".NET", "Angular", "TypeScript", "Docker", "SQL"],
+  "certifications": [
+    { "name": "Certification name", "issuer": "Issuer", "year": "2023" }
+  ],
+  "education": [
+    { "school": "University", "degree": "BSc, Computer Science", "period": "2015 – 2019" }
+  ],
+  "projects": [
+    {
+      "title": "Project name",
+      "description": "One or two sentences describing the project.",
+      "icon": "🚀",
+      "tech": [".NET", "Docker"],
+      "url": "https://github.com/your-github/project"
+    }
+  ],
+  "selectedProjects": [
+    {
+      "title": "Selected project",
+      "role": "Tech Lead",
+      "description": "Describe the project, your responsibilities and the impact.",
+      "leadership": ["Team leadership", "Architecture ownership", "Mentoring"],
+      "tech": [".NET", "Angular"]
+    }
+  ]
+}

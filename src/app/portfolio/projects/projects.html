@@ -1,0 +1,37 @@
+<section>
+  <div class="grid gap-3 sm:grid-cols-2">
+    @for (project of items(); track project.title) {
+      <div
+        class="flex flex-col gap-3 rounded-xl border border-base-content/10
+               bg-base-200/40 p-4 transition hover:bg-base-200"
+      >
+        <div class="flex items-start gap-3">
+          <span class="text-2xl leading-none" aria-hidden="true">{{ project.icon }}</span>
+          <div class="min-w-0">
+            <h3 class="font-semibold">{{ project.title }}</h3>
+            <p class="mt-1 text-sm text-base-content/70">{{ project.description }}</p>
+          </div>
+        </div>
+
+        <div class="mt-auto flex flex-wrap items-center gap-2">
+          @for (tag of project.tech; track tag) {
+            <span class="badge badge-sm border-base-content/15 bg-base-300/60">
+              {{ tag }}
+            </span>
+          }
+        </div>
+
+        @if (project.url) {
+          <a
+            [href]="project.url"
+            target="_blank"
+            rel="noopener"
+            class="text-sm font-medium text-primary underline-offset-2 hover:underline"
+          >
+            View project →
+          </a>
+        }
+      </div>
+    }
+  </div>
+</section>

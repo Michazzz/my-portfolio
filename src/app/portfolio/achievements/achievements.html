@@ -1,0 +1,41 @@
+<section>
+  <h3 class="mb-5 text-lg font-semibold text-base-content/70">Selected Projects</h3>
+
+  <div class="flex flex-col gap-4">
+    @for (proj of items(); track proj.title) {
+      <div class="rounded-xl border border-base-content/10 bg-base-200/40 p-5">
+        <div class="flex flex-wrap items-baseline gap-2">
+          <h4 class="text-lg font-semibold">{{ proj.title }}</h4>
+          @if (proj.role) {
+            <span class="badge badge-sm badge-primary">{{ proj.role }}</span>
+          }
+        </div>
+
+        <p class="mt-2 max-w-2xl text-sm text-base-content/80">{{ proj.description }}</p>
+
+        @if (proj.leadership.length) {
+          <div class="mt-3">
+            <p class="mb-1.5 text-xs font-medium uppercase tracking-wide text-base-content/50">
+              Leadership &amp; management
+            </p>
+            <div class="flex flex-wrap gap-1.5">
+              @for (highlight of proj.leadership; track highlight) {
+                <span class="badge badge-sm border-primary/40 bg-primary/10 text-primary">
+                  {{ highlight }}
+                </span>
+              }
+            </div>
+          </div>
+        }
+
+        @if (proj.tech?.length) {
+          <div class="mt-3 flex flex-wrap gap-1.5">
+            @for (tag of proj.tech; track tag) {
+              <span class="badge badge-sm border-base-content/15 bg-base-300/60">{{ tag }}</span>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>

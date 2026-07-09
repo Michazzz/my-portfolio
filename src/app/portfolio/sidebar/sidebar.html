@@ -12,27 +12,6 @@
     <p class="mt-3 text-base-content/80">{{ data().greeting }}</p>
   </div>
 
-  <!-- Get in touch -->
-  <div>
-    <h2 class="mb-4 text-2xl font-bold">Get in touch</h2>
-    <div class="grid grid-cols-2 gap-3">
-      <a
-        [href]="'mailto:' + data().email"
-        class="btn btn-outline justify-start gap-2 border-base-content/15 font-normal"
-      >
-        <app-icon name="mail" />
-        <span class="underline-offset-2 hover:underline">Email</span>
-      </a>
-      <a
-        [href]="'tel:' + data().phone"
-        class="btn btn-outline justify-start gap-2 border-base-content/15 font-normal"
-      >
-        <app-icon name="phone" />
-        <span class="underline-offset-2 hover:underline">Phone</span>
-      </a>
-    </div>
-  </div>
-
   <!-- Skill set -->
   <div>
     <h2 class="mb-4 border-b border-base-content/10 pb-2 text-2xl font-bold">
@@ -45,5 +24,48 @@
         </span>
       }
     </div>
+  </div>
+
+  <!-- Certifications -->
+  <div>
+    <h2 class="mb-4 border-b border-base-content/10 pb-2 text-2xl font-bold">
+      Certifications
+    </h2>
+    <ul class="flex flex-col gap-3">
+      @for (cert of data().certifications; track cert.name) {
+        <li>
+          @if (cert.url) {
+            <a
+              [href]="cert.url"
+              target="_blank"
+              rel="noopener"
+              class="text-sm font-medium underline-offset-2 hover:underline"
+            >
+              {{ cert.name }}
+            </a>
+          } @else {
+            <p class="text-sm font-medium">{{ cert.name }}</p>
+          }
+          <p class="text-xs text-base-content/50">
+            {{ cert.issuer }}@if (cert.year) { · {{ cert.year }}}
+          </p>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <!-- Education -->
+  <div>
+    <h2 class="mb-4 border-b border-base-content/10 pb-2 text-2xl font-bold">
+      Education
+    </h2>
+    <ul class="flex flex-col gap-3">
+      @for (edu of data().education; track edu.degree) {
+        <li>
+          <p class="text-sm font-medium">{{ edu.degree }}</p>
+          <p class="text-xs text-base-content/50">{{ edu.school }} · {{ edu.period }}</p>
+        </li>
+      }
+    </ul>
   </div>
 </div>

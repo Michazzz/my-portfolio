@@ -4,7 +4,7 @@
 # Production preview (nginx):
 #   docker compose --profile prod up --build web-prod  -> http://localhost:8080
 services:
-  web:
+  angular-ui-dev:
     build:
       context: .
       target: dev
@@ -17,7 +17,7 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
 
-  web-prod:
+  angular-ui-prod:
     profiles: ["prod"]
     build:
       context: .

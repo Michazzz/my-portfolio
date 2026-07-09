@@ -1,0 +1,16 @@
+[
+  {
+    "role": "Your role",
+    "company": "Company name",
+    "period": "2022 – present",
+    "description": "One or two sentences about what you did and the impact.",
+    "tech": [".NET", "Angular", "Docker"]
+  },
+  {
+    "role": "Previous role",
+    "company": "Company name",
+    "period": "2019 – 2022",
+    "description": "One or two sentences about this role.",
+    "tech": [".NET", "SQL"]
+  }
+]

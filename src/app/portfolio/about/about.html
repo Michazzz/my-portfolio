@@ -1,6 +1,5 @@
-<section>
-  <h2 class="mb-5 text-3xl font-bold">About Me</h2>
-  <div class="border-t border-base-content/10 pt-5">
+<section class="flex flex-col gap-10">
+  <div>
     <p class="max-w-2xl leading-relaxed text-base-content/80">
       {{ data().about }}
     </p>
@@ -20,6 +19,13 @@
           </span>
         </a>
       }
+
+      <app-email-reveal [user]="data().email.user" [domain]="data().email.domain" />
     </div>
+  </div>
+
+  <div>
+    <h3 class="mb-5 text-lg font-semibold text-base-content/70">Experience</h3>
+    <app-cv-timeline [entries]="cv" />
   </div>
 </section>

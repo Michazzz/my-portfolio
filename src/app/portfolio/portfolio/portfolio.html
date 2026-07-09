@@ -11,10 +11,35 @@
         <app-sidebar [data]="data" />
       </aside>
 
-      <main class="flex flex-col gap-12">
-        <app-about [data]="data" />
-        <app-services [items]="data.services" />
-        <app-tools [items]="data.tools" />
+      <main>
+        <!-- Tabs -->
+        <div role="tablist" class="tabs tabs-border mb-8">
+          @for (tab of tabs; track tab.id) {
+            <button
+              role="tab"
+              type="button"
+              class="tab text-xl font-semibold"
+              [class.tab-active]="activeTab() === tab.id"
+              [attr.aria-selected]="activeTab() === tab.id"
+              (click)="selectTab(tab.id)"
+            >
+              {{ tab.label }}
+            </button>
+          }
+        </div>
+
+        <!-- Active tab content -->
+        @switch (activeTab()) {
+          @case ('about') {
+            <app-about [data]="data" />
+          }
+          @case ('achievements') {
+            <app-achievements [items]="data.selectedProjects" />
+          }
+          @case ('projects') {
+            <app-projects [items]="data.projects" />
+          }
+        }
       </main>
     </div>
   </div>

@@ -42,3 +42,8 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Private content — kept out of the repo; copy the *.example.json templates
+# locally, and upload the real files to the build host (e.g. via scp) on deploy.
+/src/app/portfolio/cv-data.json
+/src/app/portfolio/portfolio-data.json

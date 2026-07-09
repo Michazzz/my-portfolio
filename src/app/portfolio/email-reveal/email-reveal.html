@@ -1,0 +1,22 @@
+@if (revealed()) {
+  <a
+    [href]="'mailto:' + address()"
+    class="flex items-center gap-3 rounded-xl border border-base-content/10
+           bg-base-200/40 px-4 py-3 transition hover:bg-base-200"
+  >
+    <app-icon name="mail" />
+    <span class="truncate text-sm text-base-content/80 underline-offset-2 hover:underline">
+      {{ address() }}
+    </span>
+  </a>
+} @else {
+  <button
+    type="button"
+    (click)="reveal()"
+    class="flex w-full items-center gap-3 rounded-xl border border-base-content/10
+           bg-base-200/40 px-4 py-3 text-left transition hover:bg-base-200"
+  >
+    <app-icon name="mail" />
+    <span class="text-sm text-base-content/60">Show email</span>
+  </button>
+}
