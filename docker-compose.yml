@@ -1,0 +1,26 @@
+# Development: hot-reloading Angular dev server.
+#   docker compose up            -> http://localhost:4200
+#
+# Production preview (nginx):
+#   docker compose --profile prod up --build web-prod  -> http://localhost:8080
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./:/app
+      # Keep the image's node_modules; don't let the host mount shadow it.
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  web-prod:
+    profiles: ["prod"]
+    build:
+      context: .
+      target: prod
+    ports:
+      - "8080:80"

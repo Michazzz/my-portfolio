@@ -1,0 +1,39 @@
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
+import { Icon } from './icon';
+import { Portfolio } from './portfolio.model';
+
+@Component({
+  selector: 'app-about',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [Icon],
+  template: `
+    <section>
+      <h2 class="mb-5 text-3xl font-bold">About Me</h2>
+      <div class="border-t border-base-content/10 pt-5">
+        <p class="max-w-2xl leading-relaxed text-base-content/80">
+          {{ data().about }}
+        </p>
+
+        <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          @for (link of data().links; track link.url) {
+            <a
+              [href]="link.url"
+              target="_blank"
+              rel="noopener"
+              class="flex items-center gap-3 rounded-xl border border-base-content/10
+                     bg-base-200/40 px-4 py-3 transition hover:bg-base-200"
+            >
+              <app-icon [name]="link.icon" />
+              <span class="truncate text-sm text-base-content/80 underline-offset-2 hover:underline">
+                {{ link.label }}
+              </span>
+            </a>
+          }
+        </div>
+      </div>
+    </section>
+  `,
+})
+export class About {
+  readonly data = input.required<Portfolio>();
+}
