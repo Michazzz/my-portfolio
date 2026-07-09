@@ -1,10 +1,17 @@
-# Development: hot-reloading Angular dev server.
-#   docker compose up            -> http://localhost:4200
+# Three modes, each behind its own profile:
 #
-# Production preview (nginx):
-#   docker compose --profile prod up --build web-prod  -> http://localhost:8080
+# Dev (hot-reload) — http://localhost:4200
+#   docker compose --profile dev up
+#
+# Production preview (nginx, local only) — http://localhost:8080
+#   docker compose --profile prod up --build angular-ui-prod
+#
+# VPS deploy (Caddy + auto-HTTPS in front of the nginx container):
+#   PORTFOLIO_DOMAIN=your.domain docker compose --profile deploy up -d --build
+#   (or put PORTFOLIO_DOMAIN in a .env file next to this compose)
 services:
   angular-ui-dev:
+    profiles: ["dev"]
     build:
       context: .
       target: dev
@@ -18,9 +25,32 @@ services:
       - CHOKIDAR_USEPOLLING=true
 
   angular-ui-prod:
-    profiles: ["prod"]
+    profiles: ["prod", "deploy"]
     build:
       context: .
       target: prod
+    # Bound to localhost: reachable for local preview and by Caddy over the
+    # compose network, but not published to the public interface on the VPS.
     ports:
-      - "8080:80"
+      - "127.0.0.1:8080:80"
+    restart: unless-stopped
+
+  caddy:
+    profiles: ["deploy"]
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - PORTFOLIO_DOMAIN=${PORTFOLIO_DOMAIN:?set PORTFOLIO_DOMAIN (e.g. in a .env file)}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - angular-ui-prod
+
+volumes:
+  caddy_data:
+  caddy_config:

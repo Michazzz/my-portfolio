@@ -7,14 +7,28 @@ Angular 21 + Tailwind CSS v4 + DaisyUI 5, containerized with Docker.
 Development server with hot-reload:
 
 ```bash
-docker compose up          # -> http://localhost:4200
+docker compose --profile dev up          # -> http://localhost:4200
 ```
 
-Production preview (built app served by nginx):
+Production preview (built app served by nginx, localhost only):
 
 ```bash
-docker compose --profile prod up --build web-prod   # -> http://localhost:8080
+docker compose --profile prod up --build angular-ui-prod   # -> http://localhost:8080
 ```
+
+## Deploy to a VPS (Caddy + auto-HTTPS)
+
+Caddy terminates TLS and reverse-proxies to the nginx container. Point the domain's
+DNS A record at the VPS and open ports 80/443, then:
+
+```bash
+# on the VPS, in the repo dir, after the gitignored files are in place (see below)
+echo "PORTFOLIO_DOMAIN=your.domain" > .env
+docker compose --profile deploy up -d --build
+```
+
+Caddy provisions and renews the certificate automatically. See "Editing content" for the
+gitignored data/asset files that must be `scp`'d into the build context first.
 
 ## Run locally (without Docker)
 

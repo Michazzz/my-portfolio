@@ -50,3 +50,6 @@ Thumbs.db
 
 # Personal certificate proofs (served as static assets) — upload via scp on deploy.
 /public/certs/
+
+# Local env (e.g. PORTFOLIO_DOMAIN for the deploy profile) — created per host.
+/.env

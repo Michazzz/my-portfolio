@@ -1,0 +1,12 @@
+# Domain comes from the PORTFOLIO_DOMAIN env var (set in .env or the shell).
+# Caddy provisions and renews HTTPS certificates automatically once the
+# domain's DNS A/AAAA record points at this VPS and ports 80/443 are open.
+{$PORTFOLIO_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy angular-ui-prod:80
+}
+
+# Redirect www -> apex (www.{$PORTFOLIO_DOMAIN} must also resolve to this VPS).
+www.{$PORTFOLIO_DOMAIN} {
+	redir https://{$PORTFOLIO_DOMAIN}{uri} permanent
+}
