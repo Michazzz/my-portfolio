@@ -5,10 +5,10 @@ import { Portfolio } from './portfolio.model';
  * Swap these values for your own — the layout reacts automatically.
  */
 export const PORTFOLIO: Portfolio = {
-  brand: 'Workfolio',
-  name: 'Michał Sajmon',
-  greeting: "Hi there! I'm Michał Sajmon",
-  avatarInitials: 'MS',
+  brand: 'My portfolio',
+  name: 'Michał Wojtalewicz',
+  greeting: "Hi there! I am Michał Wojtalewicz - fullstack developer.",
+  avatarInitials: 'MW',
   about:
     'Working on improving myself by exploring new ideas and designing user ' +
     'interfaces for mobile and web. Combining my graphic and visual designing ' +
@@ -18,9 +18,9 @@ export const PORTFOLIO: Portfolio = {
     { label: 'in/michal-sajmon', url: 'https://linkedin.com', icon: 'linkedin' },
     { label: 'michal.sajmon', url: 'https://facebook.com', icon: 'facebook' },
   ],
-  email: 'michal.sajmon@gmail.com',
+  email: 'michal.sajmon@gmail',
   phone: '+48 000 000 000',
-  skills: ['Angular', 'TypeScript', 'UI / UX', 'Tailwind', 'Figma', 'Docker'],
+  skills: ['.NET', 'Angular', 'TypeScript', 'UI / UX', 'Docker', 'SQL'],
   services: [
     { label: 'Website Designing', icon: '🌐' },
     { label: 'Social Media Management', icon: '📣' },
