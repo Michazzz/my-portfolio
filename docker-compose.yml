@@ -43,7 +43,7 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      - PORTFOLIO_DOMAIN=${PORTFOLIO_DOMAIN:?set PORTFOLIO_DOMAIN (e.g. in a .env file)}
+      - PORTFOLIO_DOMAIN=${PORTFOLIO_DOMAIN:-localhost}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data

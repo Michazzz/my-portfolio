@@ -4,7 +4,8 @@
     "company": "Company name",
     "period": "2022 – present",
     "description": "One or two sentences about what you did and the impact.",
-    "tech": [".NET", "Angular", "Docker"]
+    "tech": [".NET", "Angular", "Docker"],
+    "logoUrl": "/logos/company-name.svg"
   },
   {
     "role": "Previous role",

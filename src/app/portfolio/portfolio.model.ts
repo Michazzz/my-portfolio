@@ -17,6 +17,8 @@ export interface CvEntry {
   description: string;
   /** Tech stack / tags for this role. */
   tech?: string[];
+  /** Static path to the company logo (e.g. "/logos/acme.svg"). Omit to show no logo. */
+  logoUrl?: string;
 }
 
 export interface Certification {
@@ -78,7 +80,6 @@ export interface EmailParts {
 }
 
 export interface Portfolio {
-  brand: string;
   name: string;
   greeting: string;
   /** Initials shown in the avatar placeholder. */
@@ -86,6 +87,8 @@ export interface Portfolio {
   about: string;
   /** City / location shown under the greeting. */
   location: string;
+  /** Optional map link (e.g. Google Maps) the location text points to. */
+  locationUrl?: string;
   links: SocialLink[];
   email: EmailParts;
   /** Short "What I do" bullet points. */

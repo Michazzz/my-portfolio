@@ -7,11 +7,22 @@
           aria-hidden="true"
         ></span>
 
-        <div class="flex flex-wrap items-baseline gap-x-2">
-          <h4 class="font-semibold">{{ entry.role }}</h4>
-          <span class="text-base-content/60">· {{ entry.company }}</span>
+        <div class="flex gap-3">
+          @if (entry.logoUrl) {
+            <img
+              [src]="entry.logoUrl"
+              [alt]="entry.company + ' logo'"
+              class="h-full w-10 shrink-0 rounded-md bg-base-100 object-contain p-1 ring-1 ring-base-content/10"
+            />
+          }
+          <div class="min-w-0">
+            <div class="flex flex-wrap items-baseline gap-x-2">
+              <h4 class="font-semibold">{{ entry.role }}</h4>
+              <span class="text-base-content/60">· {{ entry.company }}</span>
+            </div>
+            <p class="text-sm text-base-content/50">{{ entry.period }}</p>
+          </div>
         </div>
-        <p class="text-sm text-base-content/50">{{ entry.period }}</p>
         <p class="mt-1 max-w-2xl text-sm text-base-content/80">{{ entry.description }}</p>
 
         @if (entry.tech?.length) {

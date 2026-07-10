@@ -9,9 +9,26 @@
         {{ data().avatarInitials }}
       </span>
     </div>
-    <p class="mt-3 text-base-content/80">{{ data().greeting }}</p>
+    <p class="mt-3 text-base-content/80">
+      @for (part of greetingParts(); track $index) {
+        {{ part }}@if (!$last) {<strong class="font-bold">{{ data().name }}</strong>}
+      }
+    </p>
     @if (data().location) {
-      <p class="mt-1 text-sm text-base-content/50">📍 {{ data().location }}</p>
+      <p class="mt-1 text-sm text-base-content/50">
+        📍
+        @if (data().locationUrl) {
+          <a
+            [href]="data().locationUrl"
+            target="_blank"
+            rel="noopener"
+            class="underline-offset-2 hover:underline"
+            >{{ data().location }}</a
+          >
+        } @else {
+          {{ data().location }}
+        }
+      </p>
     }
   </div>
 

@@ -22,7 +22,7 @@
           <div class="flex flex-wrap items-baseline gap-2">
             <h4 class="text-lg font-semibold">{{ proj.title }}</h4>
             @if (proj.role) {
-              <span class="badge badge-sm badge-primary">{{ proj.role }}</span>
+              <span class="badge badge-sm badge-info">{{ proj.role }}</span>
             }
           </div>
 
@@ -35,7 +35,7 @@
               </p>
               <div class="flex flex-wrap gap-1.5">
                 @for (highlight of proj.leadership; track highlight) {
-                  <span class="badge badge-sm border-primary/40 bg-primary/10 text-primary">
+                  <span class="badge badge-sm border-info/40 bg-info/10 text-base-content/80">
                     {{ highlight }}
                   </span>
                 }

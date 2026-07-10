@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, computed } from '@angular/core';
 import { Portfolio } from '../portfolio.model';
 
 @Component({
@@ -8,4 +8,7 @@ import { Portfolio } from '../portfolio.model';
 })
 export class Sidebar {
   readonly data = input.required<Portfolio>();
+
+  /** Splits the greeting around the name so the name can be rendered in bold. */
+  protected readonly greetingParts = computed(() => this.data().greeting.split(this.data().name));
 }
