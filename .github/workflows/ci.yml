@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-build:
+    name: Lint & build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # The real content lives in a private submodule that CI can't clone, so
+      # seed the content dir from the committed example templates. This validates
+      # that the code lints and builds without needing the private data.
+      - name: Seed content from examples
+        run: |
+          mkdir -p src/app/portfolio/content/assets/certs
+          cp src/app/portfolio/portfolio-data.example.json src/app/portfolio/content/portfolio-data.json
+          cp src/app/portfolio/cv-data.example.json src/app/portfolio/content/cv-data.json
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
