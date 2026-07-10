@@ -6,32 +6,70 @@ on:
   pull_request:
     branches: [main]
 
+# The real content lives in a private submodule CI can't clone, so each job
+# seeds the content dir from the committed example templates (validates the
+# code — lint / build / test — without needing the private data).
+
 jobs:
-  lint-and-build:
-    name: Lint & build
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      # The real content lives in a private submodule that CI can't clone, so
-      # seed the content dir from the committed example templates. This validates
-      # that the code lints and builds without needing the private data.
+      - run: npm ci
       - name: Seed content from examples
         run: |
           mkdir -p src/app/portfolio/content/assets/certs
           cp src/app/portfolio/portfolio-data.example.json src/app/portfolio/content/portfolio-data.json
           cp src/app/portfolio/cv-data.example.json src/app/portfolio/content/cv-data.json
+      - run: npm run lint
 
-      - name: Lint
-        run: npm run lint
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - name: Cache Angular build cache
+        uses: actions/cache@v4
+        with:
+          path: .angular/cache
+          key: ${{ runner.os }}-angular-${{ hashFiles('package-lock.json') }}
+          restore-keys: ${{ runner.os }}-angular-
+      - run: npm ci
+      - name: Seed content from examples
+        run: |
+          mkdir -p src/app/portfolio/content/assets/certs
+          cp src/app/portfolio/portfolio-data.example.json src/app/portfolio/content/portfolio-data.json
+          cp src/app/portfolio/cv-data.example.json src/app/portfolio/content/cv-data.json
+      - run: npm run build
 
-      - name: Build
-        run: npm run build
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+      - name: Cache Angular build cache
+        uses: actions/cache@v4
+        with:
+          path: .angular/cache
+          key: ${{ runner.os }}-angular-${{ hashFiles('package-lock.json') }}
+          restore-keys: ${{ runner.os }}-angular-
+      - run: npm ci
+      - name: Seed content from examples
+        run: |
+          mkdir -p src/app/portfolio/content/assets/certs
+          cp src/app/portfolio/portfolio-data.example.json src/app/portfolio/content/portfolio-data.json
+          cp src/app/portfolio/cv-data.example.json src/app/portfolio/content/cv-data.json
+      - run: npm run test -- --watch=false

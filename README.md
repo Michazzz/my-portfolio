@@ -1,5 +1,7 @@
 # Portfolio
 
+[![CI](https://github.com/Michazzz/my-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/Michazzz/my-portfolio/actions/workflows/ci.yml)
+
 Angular 21 + Tailwind CSS v4 + DaisyUI 5, containerized with Docker.
 
 ## Run with Docker (recommended)
