@@ -1,0 +1,3 @@
+[submodule "src/app/portfolio/content"]
+	path = src/app/portfolio/content
+	url = git@github.com:Michazzz/portfolio-content.git

@@ -43,13 +43,9 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
-# Private content — kept out of the repo; copy the *.example.json templates
-# locally, and upload the real files to the build host (e.g. via scp) on deploy.
-/src/app/portfolio/cv-data.json
-/src/app/portfolio/portfolio-data.json
-
-# Personal certificate proofs (served as static assets) — upload via scp on deploy.
-/public/certs/
+# Private content (data JSON + avatar + cert PDFs) lives in the `portfolio-content`
+# private repo, mounted as a git submodule at src/app/portfolio/content — so it's
+# NOT gitignored here; sync it with `git submodule update --remote`.
 
 # Local env (e.g. PORTFOLIO_DOMAIN for the deploy profile) — created per host.
 /.env

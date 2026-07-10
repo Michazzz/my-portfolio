@@ -22,6 +22,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/app/portfolio/content/assets",
+                "output": "."
               }
             ],
             "styles": ["src/styles.css"]

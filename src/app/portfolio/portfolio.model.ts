@@ -82,8 +82,10 @@ export interface EmailParts {
 export interface Portfolio {
   name: string;
   greeting: string;
-  /** Initials shown in the avatar placeholder. */
+  /** Initials shown in the avatar placeholder when no image is set. */
   avatarInitials: string;
+  /** Optional avatar image URL (served from `public/`, e.g. "/avatar.png"). */
+  avatarImage?: string;
   about: string;
   /** City / location shown under the greeting. */
   location: string;
