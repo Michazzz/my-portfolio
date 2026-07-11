@@ -1,15 +1,15 @@
 <section class="flex flex-col gap-10">
   <div>
-    <p class="max-w-2xl leading-relaxed text-base-content/80">
+    <p class="max-w-2xl leading-relaxed text-base-content/80 text-justify">
       {{ data().about }}
     </p>
 
     @if (data().whatIDo.length) {
       <div class="mt-6">
-        <h3 class="mb-3 text-lg font-semibold text-base-content/70">What I do</h3>
+        <h3 class="mb-3 text-lg font-semibold text-base-content/70 ">What I do</h3>
         <ul class="flex flex-col gap-2">
           @for (item of data().whatIDo; track item) {
-            <li class="flex gap-2.5 text-sm text-base-content/80">
+            <li class="flex gap-2.5 text-sm text-base-content/80 text-justify">
               <span class="mt-1 text-primary" aria-hidden="true">▸</span>
               <span class="max-w-2xl">{{ item }}</span>
             </li>
