@@ -6,14 +6,14 @@
                bg-base-200/40 p-4 transition hover:bg-base-200"
       >
         <div class="flex items-start gap-3">
-          <span class="text-2xl leading-none" aria-hidden="true">{{ project.icon }}</span>
+          <!-- <span class="text-2xl leading-none" aria-hidden="true">{{ project.icon }}</span> -->
           <div class="min-w-0">
             <h3 class="font-semibold">{{ project.title }}</h3>
             <p class="mt-1 text-sm text-base-content/70">{{ project.description }}</p>
           </div>
         </div>
 
-        <div class="mt-auto flex flex-wrap items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           @for (tag of project.tech; track tag) {
             <span class="badge badge-sm border-base-content/15 bg-base-300/60">
               {{ tag }}
@@ -21,16 +21,31 @@
           }
         </div>
 
-        @if (project.url) {
-          <a
-            [href]="project.url"
-            target="_blank"
-            rel="noopener"
-            class="text-sm font-medium text-primary underline-offset-2 hover:underline"
-          >
-            View project →
-          </a>
-        }
+        <!-- Links: GitHub + website, side by side (16px apart) -->
+        <div class="mt-auto flex items-center gap-4 pt-2">
+          @if (project.github) {
+            <a
+              [href]="project.github"
+              target="_blank"
+              rel="noopener"
+              aria-label="GitHub repository"
+              class="inline-flex text-base-content/80 transition hover:text-base-content"
+            >
+              <app-tech-icon [name]="gitHub" size="lg" />
+            </a>
+          }
+          @if (project.url) {
+            <a
+              [href]="project.url"
+              target="_blank"
+              rel="noopener"
+              aria-label="Visit website"
+              class="inline-flex text-primary transition hover:text-primary/80"
+            >
+              <app-icon name="globe" size="lg" />
+            </a>
+          }
+        </div>
       </div>
     }
   </div>

@@ -110,19 +110,19 @@ function isDark(hex: string): boolean {
   changeDetection: ChangeDetectionStrategy.OnPush,
   // `contents` keeps this host out of flex layout so iconless skills don't get an empty gap.
   host: { class: 'contents' },
-  template: `
-    @if (glyph(); as g) {
-      <svg viewBox="0 0 24 24" class="size-3.5 shrink-0" [attr.fill]="fill()" aria-hidden="true">
-        <path [attr.d]="g.path" />
-      </svg>
-    }
-  `,
+  templateUrl: './tech-icon.html',
 })
 export class TechIcon {
   readonly name = input.required<string>();
+  /** `sm` (default) is the inline badge size; `lg` is 64px (e.g. project links). */
+  readonly size = input<'sm' | 'lg'>('sm');
 
   protected readonly glyph = computed<Glyph | undefined>(
     () => ICONS[this.name().trim().toLowerCase()],
+  );
+
+  protected readonly sizeClass = computed(() =>
+    this.size() === 'lg' ? 'size-12 shrink-0' : 'size-3.5 shrink-0',
   );
 
   protected readonly fill = computed(() => {

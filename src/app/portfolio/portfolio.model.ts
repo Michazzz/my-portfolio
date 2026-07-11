@@ -64,11 +64,13 @@ export interface Project {
   icon: string;
   /** Tech stack / tags. */
   tech: string[];
-  /** Optional link to a repo or live demo. */
+  /** Optional link to a live demo. */
   url?: string;
+  /** Optional link to the project's GitHub repository. */
+  github?: string;
 }
 
-export type IconKey = 'link' | 'linkedin' | 'github' | 'mail' | 'phone';
+export type IconKey = 'link' | 'linkedin' | 'github' | 'mail' | 'phone' | 'globe';
 
 /**
  * Email split into parts so the full `user@domain` never appears literally in

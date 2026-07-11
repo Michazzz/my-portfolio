@@ -10,15 +10,26 @@ describe('Projects', () => {
     return fixture.nativeElement as HTMLElement;
   }
 
-  it('renders a "View project" link only for projects with a url', () => {
+  it('links to GitHub and the website only when those urls are set', () => {
     const el = render([
-      { title: 'A', description: 'd', icon: '🚀', tech: ['X'], url: 'https://a.dev' },
+      {
+        title: 'A',
+        description: 'd',
+        icon: '🚀',
+        tech: ['X'],
+        github: 'https://github.com/a',
+        url: 'https://a.dev',
+      },
       { title: 'B', description: 'd', icon: '🎯', tech: [] },
     ]);
-    const links = Array.from(el.querySelectorAll('a'));
-    expect(links.length).toBe(1);
-    expect(links[0].getAttribute('href')).toBe('https://a.dev');
-    expect(links[0].textContent).toContain('View project');
+
+    const gh = el.querySelectorAll('a[aria-label="GitHub repository"]');
+    const web = el.querySelectorAll('a[aria-label="Visit website"]');
+    // Only project A has links.
+    expect(gh.length).toBe(1);
+    expect(web.length).toBe(1);
+    expect(gh[0].getAttribute('href')).toBe('https://github.com/a');
+    expect(web[0].getAttribute('href')).toBe('https://a.dev');
   });
 
   it('renders the tech stack as badges', () => {
