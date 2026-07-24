@@ -8,6 +8,7 @@ import { Skills } from '../skills/skills';
 import { Achievements } from '../achievements/achievements';
 import { Projects } from '../projects/projects';
 import { PORTFOLIO } from '../portfolio.data';
+import { SeoService } from '../../core/seo.service';
 
 type TabId = 'about' | 'skills' | 'achievements' | 'projects';
 
@@ -22,6 +23,11 @@ export class Portfolio {
   private readonly router = inject(Router);
 
   protected readonly data = PORTFOLIO;
+
+  constructor() {
+    // Set title/description/OG/canonical during (pre)render so crawlers get them.
+    inject(SeoService).setForHome(this.data);
+  }
 
   protected readonly tabs: readonly { id: TabId; label: string }[] = [
     { id: 'about', label: 'About Me' },

@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { Achievements } from './achievements';
 import { SelectedProject } from '../portfolio.model';
 
@@ -10,6 +11,11 @@ describe('Achievements', () => {
     leadership: ['Mentoring', 'Architecture ownership'],
     tech: ['.NET'],
   };
+
+  beforeEach(() => {
+    // The case-study link uses routerLink, so a router provider is required.
+    TestBed.configureTestingModule({ providers: [provideRouter([])] });
+  });
 
   function render(items: SelectedProject[], highlights: string[]): HTMLElement {
     const fixture = TestBed.createComponent(Achievements);
@@ -31,5 +37,13 @@ describe('Achievements', () => {
     expect(text).toContain('Leadership');
     expect(text).toContain('Mentoring');
     expect(text).toContain('Architecture ownership');
+  });
+
+  it('links to the case study only when the project has a slug', () => {
+    expect(render([proj], []).querySelector('a[href^="/projects/"]')).toBeNull();
+
+    const withSlug = render([{ ...proj, slug: 'telematics' }], []);
+    const link = withSlug.querySelector('a[href^="/projects/"]');
+    expect(link?.getAttribute('href')).toBe('/projects/telematics');
   });
 });

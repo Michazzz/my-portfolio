@@ -37,12 +37,18 @@ export interface EducationEntry {
 
 export interface SelectedProject {
   title: string;
+  /** URL slug; when set, the project gets its own `/projects/:slug` case-study page. */
+  slug?: string;
   /** Your role, e.g. "Tech Lead". */
   role?: string;
   description: string;
   /** Leadership / management highlights to expose. */
   leadership: string[];
   tech?: string[];
+  /** Long-form case-study sections — rendered on the detail page only when present. */
+  problem?: string;
+  approach?: string[];
+  outcome?: string[];
 }
 
 export interface SkillGroup {
@@ -83,6 +89,10 @@ export interface EmailParts {
 
 export interface Portfolio {
   name: string;
+  /** Role tagline used in the SEO <title> and social tags. Falls back to a default. */
+  headline?: string;
+  /** ~155-char meta description for search/social. Falls back to a truncated `about`. */
+  seoDescription?: string;
   greeting: string;
   /** Initials shown in the avatar placeholder when no image is set. */
   avatarInitials: string;

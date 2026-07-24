@@ -50,6 +50,16 @@
               }
             </div>
           }
+
+          @if (proj.slug) {
+            <a
+              [routerLink]="['/projects', proj.slug]"
+              class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary
+                     underline-offset-2 transition hover:underline"
+            >
+              Read case study <span aria-hidden="true">→</span>
+            </a>
+          }
         </div>
       }
     </div>

@@ -10,7 +10,15 @@
              transition hover:ring-primary/50"
     >
       @if (data().avatarImage; as avatar) {
-        <img [src]="avatar" [alt]="data().name" class="size-full object-cover" />
+        <img
+          [src]="avatar"
+          [alt]="data().name"
+          width="800"
+          height="736"
+          fetchpriority="high"
+          decoding="async"
+          class="size-full object-cover"
+        />
       } @else {
         <div class="grid size-full place-items-center">
           <span class="text-6xl font-black tracking-tight text-base-content/80">
