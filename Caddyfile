@@ -3,6 +3,17 @@
 # domain's DNS A/AAAA record points at this VPS and ports 80/443 are open.
 {$PORTFOLIO_DOMAIN} {
 	encode zstd gzip
+
+	# Security headers applied to every response.
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Frame-Options "SAMEORIGIN"
+		Permissions-Policy "geolocation=(), microphone=(), camera=()"
+		-Server
+	}
+
 	reverse_proxy angular-ui-prod:80
 }
 

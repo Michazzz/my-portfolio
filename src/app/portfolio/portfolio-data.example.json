@@ -1,5 +1,7 @@
 {
   "name": "Your Name",
+  "headline": "Senior Software Engineer",
+  "seoDescription": "Senior Software Engineer focused on building and leading enterprise applications. Short SEO summary (~155 chars) shown in search results and link previews.",
   "greeting": "Hi there! I am Your Name — Senior Software Engineer.",
   "avatarInitials": "YN",
   "location": "City, Country",
@@ -39,8 +41,12 @@
   "selectedProjects": [
     {
       "title": "Selected project",
+      "slug": "selected-project",
       "role": "Tech Lead",
       "description": "Describe the project, your responsibilities and the impact.",
+      "problem": "What challenge or context the project addressed (shown on the case-study page).",
+      "approach": ["What you did.", "Key technical or leadership decisions."],
+      "outcome": ["A concrete, measurable result.", "Another win."],
       "leadership": ["Team leadership", "Architecture ownership", "Mentoring"],
       "tech": [".NET", "Angular"]
     }
